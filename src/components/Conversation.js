@@ -1,7 +1,8 @@
-export default function Conversation() {
+export default function Conversation(props) {
+    console.log(props)
     return (
         <div className="container">
-            Convo goes here.
+            <h1>{props.character}</h1> 
         </div>
     )
 }
