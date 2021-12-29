@@ -28,7 +28,7 @@ export default function Start() {
             />
 
             {/* <button id="char-name-submit" className="btn" onClick={handleSubmit}>Submit</button> */}
-            {/* <Conversation character={character}/> {/*char getting passed in before the event fires*/ }
+            <Conversation character={character}/> {/*char getting passed in before the event fires*/}
         </div>
     )
 }
