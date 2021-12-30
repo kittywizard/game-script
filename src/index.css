@@ -1,10 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Work+Sans:wght@300;700&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Work Sans", sans-serif;
 }
 
 .input-text,
@@ -13,8 +11,20 @@ body {
   padding: 2em 3em;
   border-radius: 50px;
   margin: 0.5em;
+  font-family: "Work Sans", sans-serif;
 }
 
+.btn {
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: gainsboro;
+}
 .input-text {
   background-color: aliceblue;
 }

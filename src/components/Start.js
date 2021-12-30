@@ -7,27 +7,40 @@ export default function Start() {
                                             {"characterName": "",
                                             "otherData": ""});
 
-    function handleSubmit(event) { 
+    function handleChange(event) { 
+
+        const {name, value} = event.target; //destructure object into variables to be easier to read. best practice?
+
         setCharacter(prevState => {
             return {
                 ...prevState, //use the spread operator to take previous state and then add to it
-                [event.target.name]: event.target.value
+                [name]: value
             }
             
         });
     }   
 
+    //form submit function. takes what state is and does something with it.
+    function handleSubmit(event) {
+        event.preventDefault(); //always do in react so form doesn't reload page
+
+        console.log(character);
+    }
+
     return(
         <div className="start-input">
-            <input type="text" 
-                placeholder="Character (not Player) Name" 
-                id="char-name" 
-                className="input-text"
-                name="characterName" 
-                onChange={handleSubmit}
-            />
+            <form onSubmit={handleSubmit} id="name-entry">
+                <input type="text" 
+                    placeholder="Character (not Player) Name" 
+                    id="char-name" 
+                    className="input-text"
+                    name="characterName" 
+                    onChange={handleChange}
+                    value={character.characterName} 
+                />
+                <button className='btn'>Submit</button>
+            </form>
 
-            {/* <button id="char-name-submit" className="btn" onClick={handleSubmit}>Submit</button> */}
             <Conversation character={character}/> {/*char getting passed in before the event fires*/}
         </div>
     )
