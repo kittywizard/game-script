@@ -5,7 +5,8 @@ export default function Conversation(props) {
     //save character's name in an easier variable
     const charName = props.character.characterName;
     const playerChar = "PC";
-    const mapArray = [];
+    let mapArray = [];
+    let newArray = [];
 
     //set up state so we can grab the entry 
     const [entry, setEntry] = React.useState({
@@ -27,21 +28,25 @@ export default function Conversation(props) {
         }))
     }
 
-
-
     //form submit
     function handleEntry(e) {
         
         e.preventDefault();
 
-        console.log(entry)
+        //display object?!
+        mapArray.push(entry);
+        console.log(mapArray)
 
-
+       newArray =  mapArray.map(entry => {
+            return <Line 
+                    content={entry}
+                />
+        })
     }
 
     return (
         <div className="container">
-
+            {newArray}
             <form onSubmit={handleEntry} className="flex-form">
                 <label htmlFor="text">{charName}:</label>
                  {/* {entry.switchActiveSpeaker ? entry.name : playerChar} */}
