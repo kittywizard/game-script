@@ -1,11 +1,12 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Conversation from './Conversation';
 
 export default function Start() {
 
     const [character, setCharacter] = React.useState(
-                                            {"characterName": "",
-                                            "otherData": ""});
+                                            {characterName: "",
+                                            otherData: ""});
 
     function handleChange(event) { 
 
@@ -24,7 +25,10 @@ export default function Start() {
     function handleSubmit(event) {
         event.preventDefault(); //always do in react so form doesn't reload page
 
-        console.log(character);
+        //need to render a new component and pass the form data into it
+        //form doesn't need hidden because i think render just replaces literally everything in #root. works for now lol
+
+        ReactDOM.render(<Conversation character={character}/>, document.getElementById('root'));
     }
 
     return(
@@ -40,8 +44,6 @@ export default function Start() {
                 />
                 <button className='btn'>Submit</button>
             </form>
-
-            <Conversation character={character}/> {/*char getting passed in before the event fires*/}
         </div>
     )
 }

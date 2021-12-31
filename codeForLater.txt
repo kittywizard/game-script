@@ -1,8 +1,4 @@
-import React from "react";
-import Line from "./Line";
-
-export default function Conversation(props) {
-    //save character's name in an easier variable
+//save character's name in an easier variable
     const charName = props.character.characterName;
     const playerChar = "PC";
     const mapArray = [];
@@ -11,14 +7,22 @@ export default function Conversation(props) {
     const [entry, setEntry] = React.useState({
         name: charName,
         text: "",
-        scriptCalled: false,
-        actionHappens: false,
+        entries: [
+                    {
+                        speakerName: "",
+                        speakerText: "",
+                        actionHappens: false,
+                        scriptCalled: false
+                    }   
+                ],
         switchActiveSpeaker: true,  //true = character, false = PC
     });
 
     //input entry function
 
-    function handleEntryInput(e) {
+    //  COMBINE THESE WHEN YOU KNOW MORE
+
+    function handleEntryChecked(e) {
         const {name, value, type, checked} = e.target;
         
         setEntry(prevState => ({
@@ -27,49 +31,68 @@ export default function Conversation(props) {
         }))
     }
 
+    function handleEntryInput(e) {
+        const {name, value}  = e.target;
+        let arr =[...entry.entries];
 
+        setEntry(prevState => {
+            //DO THINGS IN THE ARRAY
+            console.log(prevState)
+        })
+    }
 
     //form submit
     function handleEntry(e) {
-        
         e.preventDefault();
 
-        console.log(entry)
+
+        const array = entry.entries;
 
 
+        //use map to access the array of 'entries' and display them as components? react will re-render everything as it does so
+        //map here, set to variable and update w/ new entries
+        const mapArray = array.map(entry => {
+            return <Line 
+                    entry={entry}
+                    />
+        });
+
+        return mapArray;
+        //clear form but keep it so we can use it again? 
     }
 
     return (
         <div className="container">
-
+            Map Stuff:
+           {mapArray}
             <form onSubmit={handleEntry} className="flex-form">
-                <label htmlFor="text">{charName}:</label>
+                <label htmlFor="entry">{charName}:</label>
                  {/* {entry.switchActiveSpeaker ? entry.name : playerChar} */}
                 <input
                     type="text"
-                    value={entry.text}
+                    value={entry.entries.speakerText}
                     name="text"
                     onChange={handleEntryInput}
                     className="input-text"
                 />
 
-                <label htmlFor="actionHappens">Action Needed?</label>
+                {/* <label htmlFor="actionHappens">Action Needed?</label>
                 <input
                     type="checkbox"
                     name="actionHappens"
-                    onChange={handleEntryInput}
-                    checked={entry.actionHappens}
+                    onChange={handleEntryChecked}
+                    checked={entry.entries.actionHappens}
                 />
 
                 <label htmlFor="scriptCalled">Using a script here?</label>
                 <input
                     type="checkbox"
                     name="scriptCalled"
-                    onChange={handleEntryInput}
-                    checked={entry.scriptCalled}
+                    onChange={handleEntryChecked}
+                    checked={entry.entries.scriptCalled}
                 />
 
-                {/* <label htmlFor="switchActiveSpeaker">Adding more dialogue for {entry.switchActiveSpeaker ? entry.name : playerChar}?</label>
+                <label htmlFor="switchActiveSpeaker">Adding more dialogue for {entry.switchActiveSpeaker ? entry.name : playerChar}?</label>
                 <input
                     type="checkbox"
                     name="switchActiveSpeaker"
