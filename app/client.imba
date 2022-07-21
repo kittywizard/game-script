@@ -1,11 +1,15 @@
+import "./tags/header"
+import "./tags/nav-link"
+import "./tags/container"
+
 global css html
 	ff:"Raleway", sans
+	body p: 0 m: 0
 
 tag app
 	<self>
-		<header>
-			<svg[w:200px h:auto] src='./logo.svg'>
-			<p> "Edit {<code> "app/client.imba"} and save to reload"
-			<a href="https://imba.io"> "Learn Imba"
+		<header-container>
+		<main-container>
+
 
 imba.mount <app>
