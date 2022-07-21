@@ -1,5 +1,5 @@
 global css html
-	ff:sans
+	ff:"Raleway", sans
 
 tag app
 	<self>
