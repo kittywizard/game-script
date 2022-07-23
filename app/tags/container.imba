@@ -1,4 +1,10 @@
 tag main-container
+
+	prop conversation = {}
+	prop showConvoBtn = true
+
 	<self>
-		<main> 
-			<input-block speaker="NPC: ">
+		<main>
+			if showConvoBtn
+				<conversation-block showConvoBtn=showConvoBtn> 
+			# <input-block speaker="NPC: ">
