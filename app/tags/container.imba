@@ -1,3 +1,4 @@
 tag main-container
 	<self>
-		<main> "things here"
+		<main> 
+			<input-block speaker="NPC: ">

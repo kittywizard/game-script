@@ -1,6 +1,7 @@
 import "./tags/header"
 import "./tags/nav-link"
 import "./tags/container"
+import "./tags/input-block"
 
 global css html
 	ff:"Raleway", sans
