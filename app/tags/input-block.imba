@@ -1,5 +1,6 @@
 tag input-block 
 	prop speaker = "Default: "
+	prop conversation = {}
 
 	css .tree 
 		bd: none 
@@ -12,9 +13,14 @@ tag input-block
 	css div
 		m: 1em
 
+	def handleSubmit e
+		
+		console.log e.target
 		
 	<self>
-		<div>
+		<form @submit.prevent=handleSubmit>
 			<label> speaker
 			<input.tree type="text" placeholder="...">
 			<button.tree> "+"
+
+		<div> conversation.speaker
