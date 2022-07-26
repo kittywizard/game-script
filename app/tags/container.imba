@@ -1,9 +1,6 @@
 tag main-container
 
-	prop conversation = {
-		speaker: "NPC"
-		line: "Hello world"
-	}
+	prop conversation = []
 	prop showConvoBtn = true
 
 	<self>
@@ -11,4 +8,4 @@ tag main-container
 			if showConvoBtn then <conversation-block bind:showConvoBtn=showConvoBtn> 
 				
 			else 
-				<input-block speaker="NPC: " bind:conversation=conversation>
+				<input-block bind:conversation=conversation>

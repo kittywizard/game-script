@@ -2,10 +2,7 @@ tag conversation-block
 	prop showConvoBtn = true
 	
 	def handleClick
-		console.log "adding new convo"
-		# need to hide this button after
 		showConvoBtn = !showConvoBtn
-		console.log showConvoBtn
 
 	css div p:0.5em
 		button 
