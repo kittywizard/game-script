@@ -1,5 +1,5 @@
 tag input-block 
-	prop speaker = "Default: "
+	prop speaker = "Choose a speaker "
 	prop conversation = []
 	prop dialogue = {
 		speaker: 'NPC: '
@@ -10,31 +10,10 @@ tag input-block
 	}
 	prop displayButtons = false
 
-	css .tree # rename this
-		bd: none 
-		p: 1em 2em
-		bgc:warm3
-		rd: 0.25em
-		m: 0.25em
-		ff: $font
-		cursor: pointer
-
 	css div
 		m: 1em
 	
-	css .checkboxes d:flex fld:row bgc:cooler4
-	
-	css .btn-container 
-			button 
-				bd:none 
-				c:warm2 ff:"Raleway", sans-serif
-				bgc:cool6 bgc@hover:cool8 
-				p:1em 2em 
-				rd:0.25em
-				cursor: pointer	
-
-	css .npc c:pink4 fw:700 m:0 p:0 d:inline
-		.pc c:pink9 fw: 700
+	css .checkboxes d:flex fld:row bgc:cool2 shadow:md
 
 	def handleSpeaker char
 		if char	
@@ -47,7 +26,6 @@ tag input-block
 
 		dialogue.line = e.target[0].value
 		conversation.push(dialogue)
-		console.log conversation
 		# reset
 		dialogue = {
 			speaker: ''
@@ -55,20 +33,20 @@ tag input-block
 			action: false
 			script: false
 			journal: false
-
 		}
 		
 	<self>
 		if displayButtons
 			<div.btn-container>
 				<p> "Who's talking?"
-				<button.tree @click=handleSpeaker(true)> "NPC"
-				<button.tree @click=handleSpeaker(false)> "PC"
+				<button @click=handleSpeaker(true)> "NPC"
+				<button @click=handleSpeaker(false)> "PC"
 
 		<form @submit.prevent=handleSubmit>
 			<label> dialogue.speaker
-			<input.tree type="text" required placeholder="..." bind=dialogue.line>
-			<button.tree type="submit"> "+"
+			<input type="text" required placeholder="..." bind=dialogue.line>
+			<button type="submit"> "+"
+
 			<div.checkboxes>
 				<div>
 					<input type="checkbox" name="check-script" bind=dialogue.script> 
@@ -76,21 +54,15 @@ tag input-block
 				<div>
 					<input type="checkbox" name="check-action" bind=dialogue.action>
 					<label htmlFor="check-action"> "Action Needed?"
+
+					if dialogue.action
+						<div> "Select Action"
+							<input.tree type="text" placeholder="describe action"> 
 				<div>
 					<input type="checkbox" name="check-journal" bind=dialogue.journal>
 					<label htmlFor="check-journal"> "Update Journal?"
+					
+					if dialogue.journal
+						<div> "Which journal entry?"
+							<input type="text">
 
-		# move this to its own tag
-		<div> 
-			for convo in conversation	
-				<p.npc> convo.speaker
-				<span> convo.line
-				<div.script>
-					<span> "Script? "
-					<span> if convo.script then "Yes" else "No"
-				<div.action>
-					<span> "Action? "
-					<span> if convo.action then "Yes" else "No"
-				<div.journal>
-					<span> "Journal "
-					<span> if convo.journal then "Yes" else "No"
