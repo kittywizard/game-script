@@ -16,7 +16,7 @@ tag input-block
 		bgc:warm3
 		rd: 0.25em
 		m: 0.25em
-		ff:"Raleway", sans-serif
+		ff: $font
 		cursor: pointer
 
 	css div

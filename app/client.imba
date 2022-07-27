@@ -7,6 +7,7 @@ import "./tags/convo-block"
 global css html
 	ff:"Raleway", sans
 	body p: 0 m: 0
+	$font: "Raleway", sans
 
 tag app
 	<self>
