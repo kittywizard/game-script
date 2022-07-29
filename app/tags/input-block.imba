@@ -1,5 +1,5 @@
 tag input-block 
-	prop speaker = "Default: "
+	prop speaker = "Choose a speaker "
 	prop conversation = []
 	prop dialogue = {
 		speaker: 'NPC: '
@@ -10,15 +10,6 @@ tag input-block
 	}
 	prop displayButtons = false
 	prop displayOptions = false
-
-	css .tree # rename this
-		bd: none 
-		p: 1em 2em
-		bgc:warm3
-		rd: 0.25em
-		m: 0.25em
-		ff: $font
-		cursor: pointer
 
 	css div
 		m: 1em
@@ -37,6 +28,7 @@ tag input-block
 
 	css .npc c:pink4 fw:700 m:0 p:0 d:inline
 		.pc c:pink9 fw: 700
+	css .checkboxes d:flex fld:row bgc:cool2 shadow:md
 
 	def handleSpeaker char
 		if char	
@@ -49,7 +41,6 @@ tag input-block
 
 		dialogue.line = e.target[0].value 
 		conversation.push(dialogue)
-		console.log conversation
 		# reset
 		dialogue = {
 			speaker: ''
@@ -64,14 +55,16 @@ tag input-block
 		if displayButtons
 			<div.btn-container>
 				<p> "Who's talking?"
-				<button.tree @click=handleSpeaker(true)> "NPC"
-				<button.tree @click=handleSpeaker(false)> "PC"
+				<button @click=handleSpeaker(true)> "NPC"
+				<button @click=handleSpeaker(false)> "PC"
 
 		<form @submit.prevent=handleSubmit>
 			<label> dialogue.speaker
-			<input.tree type="text" required placeholder="..." bind=dialogue.line>
-			<button.tree type="submit"> "+"
+			<input type="text" required placeholder="..." bind=dialogue.line>
+			<button type="submit"> "+"
+
 			<div.checkboxes>
+<<<<<<< HEAD
 				<div @click=(displayOptions = !displayOptions)> ">> Display Options"
 				if displayOptions
 					<div>
@@ -99,3 +92,23 @@ tag input-block
 					<div.journal>
 						<span> "Journal "
 						<span> if convo.journal then "Yes" else "No"
+=======
+				<div>
+					<input type="checkbox" name="check-script" bind=dialogue.script> 
+					<label htmlFor="check-script"> "Script Needed?"
+				<div>
+					<input type="checkbox" name="check-action" bind=dialogue.action>
+					<label htmlFor="check-action"> "Action Needed?"
+
+					if dialogue.action
+						<div> "Select Action"
+							<input.tree type="text" placeholder="describe action"> 
+				<div>
+					<input type="checkbox" name="check-journal" bind=dialogue.journal>
+					<label htmlFor="check-journal"> "Update Journal?"
+					
+					if dialogue.journal
+						<div> "Which journal entry?"
+							<input type="text">
+
+>>>>>>> 0721cbb4a21484ee0a34635ea76c98d8d345274a
