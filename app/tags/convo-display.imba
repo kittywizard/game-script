@@ -3,6 +3,9 @@ tag convo-display
 	
 	css .npc c:pink4 fw:700 m:0 p:0 d:inline
 
+	css .displayCheckboxes d:flex fld: row
+
+
 	css	.addons 
 		d:flex fld:row jc:space-between 
 		w:50% max-width:fit-content

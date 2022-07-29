@@ -15,7 +15,6 @@ tag input-block
 		m: 1em
 	
 	css .checkboxes d:flex fld:row bgc:cooler4
-	css	.displayCheckboxes d:flex fld: row
 	
 	css .btn-container 
 			button 
@@ -64,51 +63,25 @@ tag input-block
 			<button type="submit"> "+"
 
 			<div.checkboxes>
-<<<<<<< HEAD
 				<div @click=(displayOptions = !displayOptions)> ">> Display Options"
 				if displayOptions
 					<div>
 						<input type="checkbox" name="check-script" bind=dialogue.script> 
 						<label htmlFor="check-script"> "Script Needed?"
+
 					<div>
-						<input type="checkbox" name="check-action" bind=dialogue.action>
+						<input type="checkbox" name="check-action" bind=dialogue.action> 
 						<label htmlFor="check-action"> "Action Needed?"
+
+						if dialogue.action
+							<div> "Select Action"
+								<input.tree type="text" placeholder="describe action"> 
 					<div>
 						<input type="checkbox" name="check-journal" bind=dialogue.journal>
 						<label htmlFor="check-journal"> "Update Journal?"
+						
+						if dialogue.journal
+							<div> "Which journal entry?"
+								<input type="text">
 
-		# move this to its own tag
-		<div> 
-			for convo in conversation	
-				<p.npc> convo.speaker
-				<span> convo.line
-				<div.displayCheckboxes>
-					<div.script>
-						<span> "Script? "
-						<span> if convo.script then "Yes" else "No"
-					<div.action>
-						<span> "Action? "
-						<span> if convo.action then "Yes" else "No"
-					<div.journal>
-						<span> "Journal "
-						<span> if convo.journal then "Yes" else "No"
-=======
-				<div>
-					<input type="checkbox" name="check-script" bind=dialogue.script> 
-					<label htmlFor="check-script"> "Script Needed?"
-				<div>
-					<input type="checkbox" name="check-action" bind=dialogue.action>
-					<label htmlFor="check-action"> "Action Needed?"
 
-					if dialogue.action
-						<div> "Select Action"
-							<input.tree type="text" placeholder="describe action"> 
-				<div>
-					<input type="checkbox" name="check-journal" bind=dialogue.journal>
-					<label htmlFor="check-journal"> "Update Journal?"
-					
-					if dialogue.journal
-						<div> "Which journal entry?"
-							<input type="text">
-
->>>>>>> 0721cbb4a21484ee0a34635ea76c98d8d345274a
