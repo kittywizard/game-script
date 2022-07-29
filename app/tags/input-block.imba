@@ -9,6 +9,7 @@ tag input-block
 		journal: false
 	}
 	prop displayButtons = false
+	prop displayOptions = false
 
 	css .tree # rename this
 		bd: none 
@@ -23,6 +24,7 @@ tag input-block
 		m: 1em
 	
 	css .checkboxes d:flex fld:row bgc:cooler4
+	css	.displayCheckboxes d:flex fld: row
 	
 	css .btn-container 
 			button 
@@ -45,7 +47,7 @@ tag input-block
 	def handleSubmit e
 		if !displayButtons then displayButtons = true
 
-		dialogue.line = e.target[0].value
+		dialogue.line = e.target[0].value 
 		conversation.push(dialogue)
 		console.log conversation
 		# reset
@@ -55,8 +57,8 @@ tag input-block
 			action: false
 			script: false
 			journal: false
-
 		}
+
 		
 	<self>
 		if displayButtons
@@ -70,27 +72,30 @@ tag input-block
 			<input.tree type="text" required placeholder="..." bind=dialogue.line>
 			<button.tree type="submit"> "+"
 			<div.checkboxes>
-				<div>
-					<input type="checkbox" name="check-script" bind=dialogue.script> 
-					<label htmlFor="check-script"> "Script Needed?"
-				<div>
-					<input type="checkbox" name="check-action" bind=dialogue.action>
-					<label htmlFor="check-action"> "Action Needed?"
-				<div>
-					<input type="checkbox" name="check-journal" bind=dialogue.journal>
-					<label htmlFor="check-journal"> "Update Journal?"
+				<div @click=(displayOptions = !displayOptions)> ">> Display Options"
+				if displayOptions
+					<div>
+						<input type="checkbox" name="check-script" bind=dialogue.script> 
+						<label htmlFor="check-script"> "Script Needed?"
+					<div>
+						<input type="checkbox" name="check-action" bind=dialogue.action>
+						<label htmlFor="check-action"> "Action Needed?"
+					<div>
+						<input type="checkbox" name="check-journal" bind=dialogue.journal>
+						<label htmlFor="check-journal"> "Update Journal?"
 
 		# move this to its own tag
 		<div> 
 			for convo in conversation	
 				<p.npc> convo.speaker
 				<span> convo.line
-				<div.script>
-					<span> "Script? "
-					<span> if convo.script then "Yes" else "No"
-				<div.action>
-					<span> "Action? "
-					<span> if convo.action then "Yes" else "No"
-				<div.journal>
-					<span> "Journal "
-					<span> if convo.journal then "Yes" else "No"
+				<div.displayCheckboxes>
+					<div.script>
+						<span> "Script? "
+						<span> if convo.script then "Yes" else "No"
+					<div.action>
+						<span> "Action? "
+						<span> if convo.action then "Yes" else "No"
+					<div.journal>
+						<span> "Journal "
+						<span> if convo.journal then "Yes" else "No"
